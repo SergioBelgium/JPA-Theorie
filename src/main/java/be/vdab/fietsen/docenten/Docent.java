@@ -15,4 +15,20 @@ public class Docent {
     private String voornaam;
     private String familienaam;
     private BigDecimal wedde;
+
+    public long getId() {
+        return id;
+    }
+
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public String getFamilienaam() {
+        return familienaam;
+    }
+
+    public BigDecimal getWedde() {
+        return wedde;
+    }
 }
