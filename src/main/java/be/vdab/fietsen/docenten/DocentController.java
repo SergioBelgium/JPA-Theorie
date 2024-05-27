@@ -2,8 +2,10 @@ package be.vdab.fietsen.docenten;
 
 import jakarta.validation.Valid;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -44,5 +46,44 @@ class DocentController {
         } catch (EmptyResultDataAccessException ignored) {
         }
     }
+    @GetMapping(params = "wedde")
+    List<Docent> findByWedde(BigDecimal wedde) {
+        return docentService.findByWedde(wedde);
+    }
+    @GetMapping(params = "emailAdres")
+    Docent findByEmailAdres(String emailAdres) {
+        return docentService.findByEmailAdres(emailAdres)
+                .orElseThrow(DocentNietGevondenException::new);
+    }
+    @GetMapping(value="aantal", params="wedde")
+    int findAantalMetWedde(BigDecimal wedde) {
+        return docentService.findAantalMetWedde(wedde);
+    }
+    @GetMapping("{emailAdres}/exist")
+    boolean existsByEmailAdres(@PathVariable String emailAdres){
+        return docentService.existsByEmailAdres(emailAdres);
+    }
+    @GetMapping(value = "existGreaterThan",params = "vanaf")
+    boolean existByWeddeGreaterThan(BigDecimal vanaf){
+        return docentService.existsByWeddeGreaterThan(vanaf);
+    }
+    @Transactional
+    @DeleteMapping("eliminar/{emailAdres}")
+    void deleteByEmailAdres( @PathVariable String emailAdres) {
+        try {
+            docentService.deleteByEmailAdres(emailAdres);
+        } catch (EmptyResultDataAccessException ignored) {
+        }
+    }
+    @Transactional
+    @DeleteMapping(value = "eliminarByWeddeGreaterThan",params = "vanaf")
+    void deleteByWeddeGreaterThan(BigDecimal vanaf){
+        docentService.deleteByWeddeGreaterThan(vanaf);
+    }
+    @GetMapping("metGrootsteWedde")
+    List<Docent> findMetGrootsteWedde() {
+        return docentService.findMetGrootsteWedde();
+    }
+
 
 }
