@@ -50,4 +50,7 @@ public class Docent {
     public BigDecimal getWedde() {
         return wedde;
     }
+    void setWedde(BigDecimal wedde) {
+        this.wedde = wedde;
+    }
 }
