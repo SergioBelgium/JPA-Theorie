@@ -17,6 +17,10 @@ public class Docent {
     private String emailAdres;
     @Enumerated(EnumType.STRING)
     private Geslacht geslacht;
+    @Version
+    private long versie;
+
+
 
     public Docent(String voornaam, String familienaam, BigDecimal wedde, String emailAdres, Geslacht geslacht) {
         this.voornaam = voornaam;

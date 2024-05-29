@@ -82,10 +82,12 @@ class DocentService {
     }
     @Transactional
     void wijzigWedde(long id, BigDecimal wedde) {
-        docentRepository.findById(id)
+        docentRepository.findAndLockById(id)
  .orElseThrow(DocentNietGevondenException::new)
  .setWedde(wedde);
     }
+
+
 
 
 
