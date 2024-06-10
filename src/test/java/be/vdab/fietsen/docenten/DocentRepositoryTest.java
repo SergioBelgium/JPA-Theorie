@@ -4,11 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.test.jdbc.JdbcTestUtils;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-
 class DocentRepositoryTest {
     private static final String DOCENTEN_TABLE = "docenten";
     private final DocentRepository docentRepository;
@@ -18,6 +16,7 @@ class DocentRepositoryTest {
         this.docentRepository = docentRepository;
         this.jdbcClient = jdbcClient;
     }
+
     @Test
     void countVindtHetJuisteAantalRecords() {
         assertThat(docentRepository.count())

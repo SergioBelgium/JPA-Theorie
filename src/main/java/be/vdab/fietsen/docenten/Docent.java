@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "docenten")
+@Table(name = "docenten")//esto puedes no ponerlo si el nombre de la clase ya coincide con el de la tabla!
 
 public class Docent {
     @Id
@@ -29,7 +29,7 @@ public class Docent {
         this.emailAdres = emailAdres;
         this.geslacht = geslacht;
     }
-    protected Docent(){}
+    protected Docent(){}//esto es solo para el funcionamiento interno de JPA!
 
     public Geslacht getGeslacht() {
         return geslacht;

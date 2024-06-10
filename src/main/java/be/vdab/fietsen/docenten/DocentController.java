@@ -34,7 +34,7 @@ class DocentController {
 
     @GetMapping("{id}")
     Docent findById(@PathVariable long id) {
-        return docentService.findById(id)
+        return docentService.findEnLockById(id)
                 .orElseThrow(DocentNietGevondenException::new);
     }
 
@@ -114,14 +114,14 @@ class DocentController {
 
     @GetMapping("aantalPerWedde")
     List<AantalDocentenPerWedde> findAantalDocentenPerWedde() {
-        return docentService.findAantalDocentenPerWedde();
+         return docentService.findAantalDocentenPerWedde();
     }
 
     @PatchMapping("{id}/wedde")
     void wijzigWedde(@PathVariable long id,
-                     @RequestBody @NotNull @Positive BigDecimal wedde) {
+                     @RequestBody @NotNull @Positive BigDecimal wedde) {//en los apuntes teoria pag31 parece q tendrias q cambiar el request body a NieuwDocent, o almenos pasar el dato de "nieuwDocent.wedde()"
         try {
-            docentService.wijzigWedde(id, wedde);//en los apuntes ,pag.31 aparece "otro metodo" para obtener el parametro wedde!
+            docentService.wijzigWedde(id, wedde);//ojito aki! entonces!!
         } catch (ObjectOptimisticLockingFailureException ex) {
             throw new EenAndereGebruikerWijzigdeDeDocentException();
         }

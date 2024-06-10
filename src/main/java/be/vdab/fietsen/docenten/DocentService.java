@@ -24,9 +24,10 @@ class DocentService {
     List<Docent> findAll() {
         return docentRepository.findAll(Sort.by("familienaam"));
     }
-    Optional<Docent> findById(long id) {
-        return docentRepository.findById(id);
-    }
+   // Optional<Docent> findById(long id) {
+    //    return docentRepository.findById(id);
+    //}
+    Optional<Docent> findEnLockById(long id){return docentRepository.findAndLockById(id);}
     boolean existsById(long id) {
         return docentRepository.existsById(id);
     }
