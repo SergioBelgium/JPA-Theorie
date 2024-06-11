@@ -13,8 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("docenten")
-
-
 class DocentController {
     private final DocentService docentService;
 
@@ -114,7 +112,7 @@ class DocentController {
 
     @GetMapping("aantalPerWedde")
     List<AantalDocentenPerWedde> findAantalDocentenPerWedde() {
-         return docentService.findAantalDocentenPerWedde();
+        return docentService.findAantalDocentenPerWedde();
     }
 
     @PatchMapping("{id}/wedde")
@@ -128,4 +126,9 @@ class DocentController {
 
 
     }
+    @PostMapping("weddeverhogingen")
+    void algemeneOpslag(@RequestBody @NotNull @Positive BigDecimal bedrag) {
+        docentService.algemeneOpslag(bedrag);
+    }
+
 }
